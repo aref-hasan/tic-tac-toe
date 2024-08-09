@@ -32,21 +32,21 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from models.q_learning_agent import train_agent, QLearningAgent
 
 if __name__ == "__main__":
-    episodes = 50000  # Number of episodes for training
-    learning_rate = 0.01  # Learning rate
-    discount_factor = 0.95  # Discount factor
-    epsilon = 1.0  # Initial epsilon for exploration
-    epsilon_min = 0.01  # Minimum epsilon for exploration
-    epsilon_decay = 0.995  # Epsilon decay rate
+    episodes = 50000  
+    learning_rate = 0.01  
+    discount_factor = 0.95  
+    epsilon = 1.0  
+    epsilon_min = 0.01  
+    epsilon_decay = 0.995  
 
-    # Train the Q-learning agent
+    #train agent
     agent, win_rates, average_rewards = train_agent(episodes, learning_rate, discount_factor, epsilon, epsilon_min, epsilon_decay, print_interval=1000)
     
-    # Save the trained agent
+    #save trained agent
     with open(os.path.join('.', 'models', 'trained_agent.pkl'), 'wb') as f:
         pickle.dump(agent, f)
     
-    # Optionally save training metrics for later analysis
+    #save training metrics for later analysis
     training_metrics = {
         'win_rates': win_rates,
         'average_rewards': average_rewards

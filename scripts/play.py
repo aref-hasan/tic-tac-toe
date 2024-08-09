@@ -3,7 +3,7 @@ import os
 import pickle
 import random
 
-# Add the parent directory and current directory to the system path
+#parent directory and current directory to the system path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
@@ -14,7 +14,7 @@ def play_game(agent):
     state = env.reset()
     done = False
     while not done:
-        # Agent's turn
+        #agent's turn
         available_actions = env.available_actions()
         action = agent.choose_action(state, available_actions)
         state, reward, done = env.step(action)
@@ -28,7 +28,7 @@ def play_game(agent):
                 print("It's a draw!")
             break
         
-        # Human player's turn
+        #human player's turn
         if not done:
             print("Enter your action (0-8): ")
             human_action = int(input().strip())
@@ -46,8 +46,8 @@ def play_game(agent):
                     print("It's a draw!")
 
 if __name__ == "__main__":
-    # Load the trained agent
+    #trained agent
     with open('models/trained_agent.pkl', 'rb') as f:
         agent = pickle.load(f)
-    # Play a game with the trained agent
+    #play a game with the trained agent
     play_game(agent)
