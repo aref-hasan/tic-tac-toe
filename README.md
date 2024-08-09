@@ -1,8 +1,19 @@
 # Tic-Tac-Toe Q-Learning Agent
 
+# Tic-Tac-Toe Q-Learning Agent
+
+![Tic-Tac-Toe Demo](tic_tac_toe.gif)
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
+![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
+![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) 
+
 ### AI Course - Assignment 3
 
-#### Author: A.H.
+#### Author: [Aref Hasan](https://github.com/aref-hasan) 
 
 ## Project Overview
 
@@ -11,12 +22,12 @@ This project is developed as part of the AI course and represents the third assi
 ## Table of Contents
 
 - [Project Overview](#project-overview)
-
 - [Installation](#installation)
 - [Training the Agent](#training-the-agent)
 - [Evaluating the Agent](#evaluating-the-agent)
 - [Playing Against the Agent](#playing-against-the-agent)
 - [Results](#results)
+- [License](#license)
 
 
 ## Installation
@@ -72,3 +83,6 @@ To improve the agent's performance, several enhancements were made:
 
 
 After the enhancements, the agent achieved a win rate of approximately 78% with an average reward of 1.14 over 50,000 episodes. This demonstrates a significant improvement in the agent's performance, indicating that the dynamic epsilon strategy and adjusted hyperparameters contributed to better learning and decision-making capabilities.
+
+## License
+This project is licensed under the MIT License - see the [License](LICENSE) file for details.
