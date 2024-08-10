@@ -36,8 +36,7 @@ This project is developed as part of the AI course and represents the third assi
 To set up the project, follow these steps:
 
 1. **Clone the repository**:
-   ```
-   bash
+   ```bash
    git clone <repository-url>
    cd tic_tac_toe_rl
 
@@ -68,7 +67,7 @@ To play against the trained Q-Learning agent, run the play_gui.py script located
   ```
   python gui/play_gui.py
 
-
+  ```
 
 
 
