@@ -54,8 +54,9 @@ To set up the project, follow these steps:
     
 ## Training the Agent
 To train the Q-Learning agent, run the train.py script located in the scripts directory. The script trains the agent for a specified number of episodes and saves the trained model.
+    ```
     
-    ``` python scripts/train.py
+    python scripts/train.py
 
 
 ## Evaluating the Agent
@@ -64,8 +65,8 @@ To evaluate the trained agent, use the Jupyter notebook evaluate.ipynb located i
 
 ## Playing Against the Agent
 To play against the trained Q-Learning agent, run the play_gui.py script located in the gui directory. This script starts a graphical user interface where you can play Tic-Tac-Toe against the agent.
-    
-    ``` python gui/play_gui.py
+  ```
+  python gui/play_gui.py
 
 
 
