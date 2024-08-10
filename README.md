@@ -48,7 +48,6 @@ To set up the project, follow these steps:
 
 3. **Install the required packages**:
     ```pip install -r requirements.txt
-
     
 ## Training the Agent
 To train the Q-Learning agent, run the train.py script located in the scripts directory. The script trains the agent for a specified number of episodes and saves the trained model.
