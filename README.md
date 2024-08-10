@@ -36,22 +36,26 @@ This project is developed as part of the AI course and represents the third assi
 To set up the project, follow these steps:
 
 1. **Clone the repository**:
-   ```bash
+   ```
+   bash
    git clone <repository-url>
    cd tic_tac_toe_rl
 
 
 2. **Create a virtual environment**:
-    ```python3 -m venv venv
+    ```
+    python3 -m venv venv
     source venv/bin/activate  # on Windows, use `venv\Scripts\activate`
 
 
 3. **Install the required packages**:
-    ```pip install -r requirements.txt
+    ```
+    pip install -r requirements.txt
     
 ## Training the Agent
 To train the Q-Learning agent, run the train.py script located in the scripts directory. The script trains the agent for a specified number of episodes and saves the trained model.
-    ```python scripts/train.py
+    ```
+    python scripts/train.py
 
 
 ## Evaluating the Agent
