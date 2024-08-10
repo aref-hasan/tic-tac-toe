@@ -1,20 +1,22 @@
+############ import necessary libraries ############
 import sys
 import os
 import pickle
 import random
 import pygame
 import numpy as np
+####################################################
 
-# add the parent directory and current directory to the system path
+#add the parent directory and current directory to the system path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from models.tic_tac_toe import TicTacToe
 
-# initialize pygame
+#initialize pygame
 pygame.init()
 
-# constants
+#constants for screen dimensions and board settings
 WIDTH, HEIGHT = 300, 300
 LINE_WIDTH = 10
 BOARD_ROWS, BOARD_COLS = 3, 3
@@ -24,30 +26,30 @@ CIRCLE_WIDTH = 15
 CROSS_WIDTH = 25
 SPACE = SQUARE_SIZE // 4
 
-# colors
+#color definitions
 RED = (255, 0, 0)
 BG_COLOR = (28, 170, 156)
 LINE_COLOR = (23, 145, 135)
 CIRCLE_COLOR = (239, 231, 200)
 CROSS_COLOR = (66, 66, 66)
 
-# screen
+#set up the screen
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Tic Tac Toe')
+pygame.display.setCaption('Tic Tac Toe')
 screen.fill(BG_COLOR)
 
-# tic-tac-toe board
+#initialize the tic-tac-toe board as a 3x3 matrix of zeros
 board = np.zeros((BOARD_ROWS, BOARD_COLS))
 
-
 def draw_lines():
+    #draw the grid lines on the board
     pygame.draw.line(screen, LINE_COLOR, (0, SQUARE_SIZE), (WIDTH, SQUARE_SIZE), LINE_WIDTH)
     pygame.draw.line(screen, LINE_COLOR, (0, 2 * SQUARE_SIZE), (WIDTH, 2 * SQUARE_SIZE), LINE_WIDTH)
     pygame.draw.line(screen, LINE_COLOR, (SQUARE_SIZE, 0), (SQUARE_SIZE, HEIGHT), LINE_WIDTH)
     pygame.draw.line(screen, LINE_COLOR, (2 * SQUARE_SIZE, 0), (2 * SQUARE_SIZE, HEIGHT), LINE_WIDTH)
 
-
 def draw_figures():
+    #draw the circle and cross shapes on the board
     for row in range(BOARD_ROWS):
         for col in range(BOARD_COLS):
             if board[row][col] == 1:
@@ -62,50 +64,50 @@ def draw_figures():
                                  (col * SQUARE_SIZE + SQUARE_SIZE - SPACE, row * SQUARE_SIZE + SQUARE_SIZE - SPACE),
                                  CROSS_WIDTH)
 
-
 def mark_square(row, col, player):
+    #mark a square on the board with the player's value
     board[row][col] = player
 
-
 def available_square(row, col):
+    #check if a square is available (not yet marked)
     return board[row][col] == 0
 
-
 def is_board_full():
+    #check if the board is full
     for row in range(BOARD_ROWS):
         for col in range(BOARD_COLS):
             if board[row][col] == 0:
                 return False
     return True
 
-
 def check_win(player):
-    # vertical win check
+    #check for a winning condition for the given player
+    #vertical win check
     for col in range(BOARD_COLS):
         if board[0][col] == player and board[1][col] == player and board[2][col] == player:
             draw_vertical_winning_line(col, player)
             return True
 
-    # horizontal win check
+    #horizontal win check
     for row in range(BOARD_ROWS):
         if board[row][0] == player and board[row][1] == player and board[row][2] == player:
             draw_horizontal_winning_line(row, player)
             return True
 
-    # asc diagonal win check
+    #ascending diagonal win check
     if board[2][0] == player and board[1][1] == player and board[0][2] == player:
         draw_asc_diagonal(player)
         return True
 
-    # desc diagonal win check
+    #descending diagonal win check
     if board[0][0] == player and board[1][1] == player and board[2][2] == player:
         draw_desc_diagonal(player)
         return True
 
     return False
 
-
 def draw_vertical_winning_line(col, player):
+    #draw a vertical line for a win
     posX = col * SQUARE_SIZE + SQUARE_SIZE // 2
 
     if player == 1:
@@ -115,8 +117,8 @@ def draw_vertical_winning_line(col, player):
 
     pygame.draw.line(screen, color, (posX, 15), (posX, HEIGHT - 15), LINE_WIDTH)
 
-
 def draw_horizontal_winning_line(row, player):
+    #draw a horizontal line for a win
     posY = row * SQUARE_SIZE + SQUARE_SIZE // 2
 
     if player == 1:
@@ -126,8 +128,8 @@ def draw_horizontal_winning_line(row, player):
 
     pygame.draw.line(screen, color, (15, posY), (WIDTH - 15, posY), LINE_WIDTH)
 
-
 def draw_asc_diagonal(player):
+    #draw an ascending diagonal line for a win
     if player == 1:
         color = CIRCLE_COLOR
     elif player == 2:
@@ -135,8 +137,8 @@ def draw_asc_diagonal(player):
 
     pygame.draw.line(screen, color, (15, HEIGHT - 15), (WIDTH - 15, 15), LINE_WIDTH)
 
-
 def draw_desc_diagonal(player):
+    #draw a descending diagonal line for a win
     if player == 1:
         color = CIRCLE_COLOR
     elif player == 2:
@@ -144,27 +146,26 @@ def draw_desc_diagonal(player):
 
     pygame.draw.line(screen, color, (15, 15), (WIDTH - 15, HEIGHT - 15), LINE_WIDTH)
 
-
 def restart():
+    #restart the game by resetting the board and screen
     screen.fill(BG_COLOR)
     draw_lines()
     for row in range(BOARD_ROWS):
         for col in range(BOARD_COLS):
             board[row][col] = 0
 
-
 draw_lines()
 
-# load the trained agent
+#load the trained agent
 with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'models/trained_agent.pkl'), 'rb') as f:
     agent = pickle.load(f)
 
-# main loop
+#main loop
 while True:
     player = 1
     game_over = False
 
-    # tic-tac-toe environment
+    #tic-tac-toe environment
     env = TicTacToe()
     env.reset()
 
@@ -189,7 +190,7 @@ while True:
 
                     player = 3 - player  # switch player
 
-                    # agent's turn
+                    #agent's turn
                     if not game_over:
                         state = env.board.flatten()
                         available_actions = env.available_actions()
